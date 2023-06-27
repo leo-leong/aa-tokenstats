@@ -73,7 +73,7 @@ namespace aa_tokenstats
                 return;
             }
             tokenstats = ((TOKEN_STATISTICS)(Marshal.PtrToStructure(ptr, tokenstats.GetType())));
-            Console.WriteLine("TokenId: " + tokenstats.TokenId.LowPart + "\tTokenId: " + tokenstats.AuthenticationId.LowPart);
+            Console.WriteLine("TokenId: " + tokenstats.TokenId.LowPart + "\ttAuthenticationId: " + tokenstats.AuthenticationId.LowPart);
         }
     }
 }
