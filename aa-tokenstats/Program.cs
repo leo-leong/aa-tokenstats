@@ -32,7 +32,7 @@ namespace aa_tokenstats
             Int32 hToken;
             hToken = GetCurrentToken();
             PrintTokenStats(hToken);
-        }
+         }
 
         static Int32 GetCurrentToken()
         {
