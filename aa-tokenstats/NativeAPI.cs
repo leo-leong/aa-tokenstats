@@ -68,19 +68,19 @@ namespace aa_tokenstats
 
 
         [DllImport("Kernel32.DLL", EntryPoint = "GetCurrentThread", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern UInt32 GetCurrentThread();
+        internal static extern IntPtr GetCurrentThread();
 
         [DllImport("Advapi32.DLL", EntryPoint = "OpenThreadToken", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern bool OpenThreadToken(UInt32 ThreadHandle, Int32 DesiredAccess, bool OpenAsSelf, out Int32 TokenHandle);
+        internal static extern bool OpenThreadToken(IntPtr ThreadHandle, Int32 DesiredAccess, bool OpenAsSelf, out IntPtr TokenHandle);
 
         [DllImport("Kernel32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern UInt32 GetCurrentProcess();
+        internal static extern IntPtr GetCurrentProcess();
 
         [DllImport("Advapi32.DLL", EntryPoint = "OpenProcessToken", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern bool OpenProcessToken(UInt32 ProcessHandle, Int32 DesiredAccess, out Int32 TokenHandle);
+        internal static extern bool OpenProcessToken(IntPtr ProcessHandle, Int32 DesiredAccess, out IntPtr TokenHandle);
 
         [DllImport("Advapi32.DLL", EntryPoint = "GetTokenInformation", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern bool GetTokenInformation(Int32 TokenHandle, Int32 TokenInformationClass, IntPtr TokenInformation, Int32 TokenInformationLength, out Int32 ReturnLength);
+        internal static extern bool GetTokenInformation(IntPtr TokenHandle, Int32 TokenInformationClass, IntPtr TokenInformation, Int32 TokenInformationLength, out Int32 ReturnLength);
 
     }
 }

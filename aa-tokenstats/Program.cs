@@ -29,18 +29,18 @@ namespace aa_tokenstats
     {
         static void Main(string[] args)
         {
-            Int32 hToken;
+            IntPtr hToken;
             hToken = GetCurrentToken();
             PrintTokenStats(hToken);
          }
 
-        static Int32 GetCurrentToken()
+        static IntPtr GetCurrentToken()
         {
             const Int32 TOKEN_QUERY = 8;
             const Int32 ERROR_NO_TOKEN = 1008;
 
-            Int32 hToken;
-            hToken = 0;
+            IntPtr hToken;
+            //hToken = 0;
             if (!((NativeAPI.OpenThreadToken(NativeAPI.GetCurrentThread(), TOKEN_QUERY, true, out hToken))))
             {
                 if ((Marshal.GetLastWin32Error() == ERROR_NO_TOKEN))
@@ -59,7 +59,7 @@ namespace aa_tokenstats
             return hToken;
         }
 
-        static void PrintTokenStats(Int32 hToken)
+        static void PrintTokenStats(IntPtr hToken)
         {
             Int32 length;
             IntPtr ptr;
