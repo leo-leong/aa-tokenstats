@@ -65,9 +65,9 @@ namespace aa_tokenstats
             IntPtr ptr;
             TOKEN_STATISTICS tokenstats = new TOKEN_STATISTICS();
 
-            NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, IntPtr.Zero, 0, out length);
+            NativeAPI.GetTokenInformation(hToken, (Int32)TOKEN_INFORMATION_CLASS.TokenStatistics, IntPtr.Zero, 0, out length);
             ptr = Marshal.AllocHGlobal(length);
-            if (!((NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, ptr, length, out length))))
+            if (!((NativeAPI.GetTokenInformation(hToken, (Int32)TOKEN_INFORMATION_CLASS.TokenStatistics, ptr, length, out length))))
             {
                 Marshal.FreeHGlobal(ptr);
                 return;
