@@ -41,12 +41,12 @@ namespace aa_tokenstats
 
             Int32 hToken;
             hToken = 0;
-            if (!((NativeAPI.OpenThreadToken(NativeAPI.GetCurrentThread(), TOKEN_QUERY, true, ref hToken))))
+            if (!((NativeAPI.OpenThreadToken(NativeAPI.GetCurrentThread(), TOKEN_QUERY, true, out hToken))))
             {
                 if ((Marshal.GetLastWin32Error() == ERROR_NO_TOKEN))
                 {
                     Console.WriteLine("No thread token found, proceeding to open process token.");
-                    if (!((NativeAPI.OpenProcessToken(NativeAPI.GetCurrentProcess(), TOKEN_QUERY, ref hToken))))
+                    if (!((NativeAPI.OpenProcessToken(NativeAPI.GetCurrentProcess(), TOKEN_QUERY, out hToken))))
                     {
                         Console.WriteLine("OpenProcessToken failed " + Marshal.GetLastWin32Error().ToString());
                     }
@@ -61,13 +61,13 @@ namespace aa_tokenstats
 
         static void PrintTokenStats(Int32 hToken)
         {
-            Int32 length = 0;
+            Int32 length;
             IntPtr ptr;
             TOKEN_STATISTICS tokenstats = new TOKEN_STATISTICS();
 
-            NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, IntPtr.Zero, 0, ref length);
+            NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, IntPtr.Zero, 0, out length);
             ptr = Marshal.AllocHGlobal(length);
-            if (!((NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, ptr, length, ref length))))
+            if (!((NativeAPI.GetTokenInformation(hToken, (int)TOKEN_INFORMATION_CLASS.TokenStatistics, ptr, length, out length))))
             {
                 Marshal.FreeHGlobal(ptr);
                 return;
