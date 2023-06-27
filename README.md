@@ -1,1 +1,1 @@
-# aa-tokenstats
+# Sample that illustrates how to query and print out  current user's token
